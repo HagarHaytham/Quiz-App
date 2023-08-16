@@ -9,7 +9,6 @@ function App() {
     id: index,
     answer: 'True',
   })))
-  const [correctAnswers,setCorrectAnswers] = useState([])
 
   useEffect(()=> {
     const getQuestions = async ()=>{
@@ -19,9 +18,6 @@ function App() {
       await setQuestions(questionsFromAPI.results.map((question,index)=> (
         {...question,id:index}
   
-      )))
-      await setCorrectAnswers(questionsFromAPI.results.map((question,index) => (
-        {answer:question.correct_answer,id:index}
       )))
     }
     getQuestions()
@@ -34,11 +30,7 @@ function App() {
     return data
   }
 
-  const getUserAnswers=() => {
-
-    console.log(userAnswers)
-
-  }
+  
 
 
   const changeAnswer = (e,id) => {
@@ -56,7 +48,7 @@ function App() {
 
          <Route path='/' element={
           <>
-            <Questions questions = {questions} changeAnswer={changeAnswer} getUserAnswers={getUserAnswers}/>
+            <Questions questions = {questions} changeAnswer={changeAnswer} />
           </>
         }>
          </Route>

@@ -1,6 +1,6 @@
 import {Link} from 'react-router-dom'
 import Question from "./Question"
-const Questions = ({questions,changeAnswer,getUserAnswers}) => {
+const Questions = ({questions,changeAnswer}) => {
   return (
     <div>
     {questions.map((question,index)=> (
@@ -9,7 +9,7 @@ const Questions = ({questions,changeAnswer,getUserAnswers}) => {
     ))}
     
     <Link to="/score">
-        <button className='btn' onClick={getUserAnswers}>Submit</button>
+        <button className='btn'>Submit</button>
     </Link>
 
     </div>
