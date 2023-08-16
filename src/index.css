@@ -21,3 +21,13 @@ body {
   overflow: auto;
   margin: 5px;
 }
+
+
+
+.answers {
+  display:inline-block;
+  position: absolute;
+  right: 50px;
+  width: 100px;
+  
+}
