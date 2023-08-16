@@ -1,5 +1,7 @@
 import { useState,useEffect } from 'react';
 import Questions from './Components/Questions';
+import {BrowserRouter as Router,Route,Routes } from 'react-router-dom'
+import Score from './Components/Score';
 
 function App() {
   const [questions,setQuestions] = useState([])
@@ -21,11 +23,7 @@ function App() {
       await setCorrectAnswers(questionsFromAPI.results.map((question,index) => (
         {answer:question.correct_answer,id:index}
       )))
-      console.log("My questions")
-      // await console.log(questions)
-      // await console.log(correctAnswers)
     }
-
     getQuestions()
   },[])
 
@@ -52,12 +50,23 @@ function App() {
 
 
   return (
-    <div className="App">
-      
-      <Questions questions = {questions} changeAnswer={changeAnswer}/>
-      <button onClick={getUserAnswers}>Submit</button>
+    <Router>
+      <div className="App">
+        <Routes >
 
-    </div>
+         <Route path='/' element={
+          <>
+            <Questions questions = {questions} changeAnswer={changeAnswer} getUserAnswers={getUserAnswers}/>
+          </>
+        }>
+         </Route>
+        <Route path='/score' element={<Score questions={questions} userAnswers={userAnswers}/>}>
+        </Route>
+
+        </Routes>
+
+      </div>
+    </Router>
   );
 }
 
